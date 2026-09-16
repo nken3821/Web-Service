@@ -1,6 +1,6 @@
 #[macro_use] extern crate rocket;
 
-use crate::routes::auth::{delete_user, get_user, get_users, login, register, update_user};
+use crate::routes::auth::{delete_user, get_user, get_users, login, profile, register, update_profile, update_user};
 
 mod models;
 mod db;
@@ -15,6 +15,6 @@ async fn main() {
     rocket::build()
         .manage(db::connect())
         .mount("/auth", routes![register, login])
-        .mount("/", routes![get_users, get_user, delete_user, update_user])
+        .mount("/", routes![get_users, get_user, delete_user, update_user, profile, update_profile])
         .launch().await.unwrap();
 }
